@@ -12,3 +12,4 @@ release.properties
 *.pyc
 .DS_Store
 *.swp
+.place-holder

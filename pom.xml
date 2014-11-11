@@ -63,6 +63,7 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<modules>
+				<module>optima-web</module>
 			</modules>
 		</profile>
 	</profiles>
