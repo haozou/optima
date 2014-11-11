@@ -5,10 +5,10 @@
 		<groupId>org.apache.optima</groupId>
 		<artifactId>optima</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
-		<relativePath>../parent</relativePath>
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.apache.optima.optima-web</groupId>
 	<artifactId>optima-web</artifactId>
 	<packaging>war</packaging>
 	<name>Optima Web Service</name>
@@ -21,5 +21,6 @@
 			<artifactId>spring-context</artifactId>
 			<version>4.1.1.RELEASE</version>
 		</dependency>
+		
 	</dependencies>
 </project>
