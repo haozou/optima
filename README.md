@@ -1,4 +1,4 @@
-Optima
+Optima - Free the Data
 ======
 
 big data suite
