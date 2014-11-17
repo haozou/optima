@@ -41,7 +41,7 @@ public class HiveService {
 		this.stmt = con.createStatement();
 	}
 	/**
-	 * Hive Service Constructor
+	 * Hive Service Constructor with default port number=10000
 	 * @param host
 	 * @param dbname
 	 * @param username
