@@ -20,7 +20,7 @@ public class HiveService {
 	private Statement stmt;
 
 	/**
-	 * 
+	 * Hive Service Constructor
 	 * @param host
 	 * @param port
 	 * @param dbname
@@ -41,7 +41,7 @@ public class HiveService {
 		this.stmt = con.createStatement();
 	}
 	/**
-	 * 
+	 * Hive Service Constructor
 	 * @param host
 	 * @param dbname
 	 * @param username
