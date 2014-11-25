@@ -1,15 +1,31 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Spring 4 MVC - Optima Index Page</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Optima Login</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="Designer" content="PremiumPixels.com" />
+<meta name="Author" content="$hekh@r d-Ziner, CSSJUNTION.com" />
+
+<link rel="stylesheet" type="text/css" href="/api/css/reset.css"></link>
+<link rel="stylesheet" type="text/css" href="/api/css/structure.css"></link>
+
 </head>
+
 <body>
-	<center>
-		<h2>Optima</h2>
-		<h3>
-			<a href="login?userId=hao&amp;password=nimei">Click Here</a>
-		</h3>
-	</center>
+<form th:action="@{/home}" method="post" class="box login">
+	<fieldset class="boxBody">
+	  <label>Username</label>
+	  <input name="userId" type="text" tabindex="1" placeholder=""></input>
+	  <label><a href="#" class="rLink" tabindex="5">Forget your password?</a>Password</label>
+	  <input name="password" type="password" tabindex="2"></input>
+	</fieldset>
+	<footer>
+	  <label><input type="checkbox" tabindex="3"></input>Keep me logged in</label>
+	  <input type="submit" class="btnLogin" value="Login" tabindex="4"></input>
+	</footer>
+</form>
+<footer id="main">
+  <a >Copyright 2014 By Optima. All right reserved.</a>
+</footer>
 </body>
 </html>

@@ -9,14 +9,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class LoginController {
 	@Autowired
 	private IPersonService personService;
-	@RequestMapping("/login")
-    public String hello(@RequestParam(value="userId", required=false) String userId,
+	@RequestMapping("/home")
+    public String onSubmit(@RequestParam(value="userId", required=false) String userId,
     		@RequestParam(value="password", required=false) String password,
     		Model model) {
-		
+			
 	        model.addAttribute("msg", "Hello "+personService.getPersonName() );
 	        model.addAttribute("userId", userId);
 	        model.addAttribute("password", password);
-            return "login";
+	        if("optima".equals(userId) && "optima".equals(password)){
+	        	return "home";
+	        }
+	        return "index_bak";
 	}
 }
