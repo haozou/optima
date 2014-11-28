@@ -49,6 +49,26 @@
     });
 </script>
 
+<script type='text/javascript'>
+function loadFileAsText()
+{
+	var fileToLoad = document.getElementById("fileToLoad").files[0];
+
+	var fileReader = new FileReader();
+	fileReader.onload = function(fileLoadedEvent) 
+	{
+		var textFromFileLoaded = fileLoadedEvent.target.result;
+		document.getElementById("inputTextToSave").value = textFromFileLoaded;
+	};
+	fileReader.readAsText(fileToLoad, "UTF-8");
+}
+
+function doneService(){
+	window.history.back();
+}
+
+</script>
+
 </head>
 
 
@@ -81,12 +101,7 @@
 			<input type="text" value="Quick Search" onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;"></input>
 		</form> -->
 		<hr/>
-		<h3>Create DataSets</h3>
-			<!-- <div id="importDataset" class="modalDialog">
-				<div>
-					<p>This is a import dataset box.</p>
-				</div>
-			</div> -->
+		<h3><a href="#importDataset">Create DataSet</a></h3>
 		<ul class="toggle">
 			<!-- <li class="icn_new_article"><a href="#">New Article</a></li>
 			<li class="icn_edit_article"><a href="#">Edit Articles</a></li>
@@ -99,6 +114,14 @@
 			<li><h4>Dataset5</h4></li>
 			<li><h4>Dataset6</h4></li>
 		</ul>
+		<div id="importDataset" class="modalDialog">
+				<div>
+					<P>Select a Data File:</P>
+					<input type="file" id="fileToLoad"></input>
+					<br/>
+					<button onclick="doneService()">Cancel</button><button onclick="doneService()">Finish</button>
+				</div>
+			</div>
 		<hr />
 		<h3>Create Subset</h3>
 		<ul class="toggle">

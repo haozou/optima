@@ -229,8 +229,9 @@ height: 2px;}
 	pointer-events: auto;
 }
 
-#sidebar .modalDialog > div {
-	width: 400px;
+#sidebar .modalDialog div {
+	width: 40%;
+	height: 30%;
 	position: relative;
 	margin: 10% auto;
 	padding: 5px 20px 13px 20px;
@@ -239,6 +240,11 @@ height: 2px;}
 	background: -moz-linear-gradient(#fff, #999);
 	background: -webkit-linear-gradient(#fff, #999);
 	background: -o-linear-gradient(#fff, #999);
+}
+
+#sidebar .modalDialog p {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
 }
 /* Search */
 
