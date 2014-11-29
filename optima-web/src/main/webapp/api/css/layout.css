@@ -208,7 +208,44 @@ display: block;
 width: 100%;
 height: 2px;}
 
+#sidebar .modalDialog {
+	position: fixed;
+	font-family: Arial, Helvetica, sans-serif;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0,0,0,0.8);
+	z-index: 99999;
+	opacity:0;
+	-webkit-transition: opacity 400ms ease-in;
+	-moz-transition: opacity 400ms ease-in;
+	transition: opacity 400ms ease-in;
+	pointer-events: none;
+}
 
+#sidebar .modalDialog:target {
+	opacity:1;
+	pointer-events: auto;
+}
+
+#sidebar .modalDialog div {
+	width: 40%;
+	height: 30%;
+	position: relative;
+	margin: 10% auto;
+	padding: 5px 20px 13px 20px;
+	border-radius: 10px;
+	background: #fff;
+	background: -moz-linear-gradient(#fff, #999);
+	background: -webkit-linear-gradient(#fff, #999);
+	background: -o-linear-gradient(#fff, #999);
+}
+
+#sidebar .modalDialog p {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+}
 /* Search */
 
 .quick_search {
@@ -276,6 +313,17 @@ margin: 0; padding: 0;
 #sidebar li {
 list-style: none;
 margin: 0 0 0 12%; padding: 0;
+}
+
+#sidebar a {
+color: #666666;
+padding-left: 25px;
+text-decoration: none;
+display: inline-block;
+height: 17px;
+line-height: 17px;
+text-shadow: 0 1px 0 #fff;
+margin: 2px 0;
 }
 
 #sidebar li a {
