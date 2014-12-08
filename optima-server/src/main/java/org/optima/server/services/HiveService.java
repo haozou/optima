@@ -1,15 +1,19 @@
 package org.optima.server.services;
 
-import java.sql.SQLException;
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.List;
+
+import org.optima.server.model.Column;
 
 /**
  * JDBC with hive service
+ * 
  * @author hzou
- *
+ * 
  */
 public class HiveService {
 	final static String DRIVER_NAME = "org.apache.hive.jdbc.HiveDriver";
@@ -21,6 +25,7 @@ public class HiveService {
 
 	/**
 	 * Hive Service Constructor
+	 * 
 	 * @param host
 	 * @param port
 	 * @param dbname
@@ -40,8 +45,10 @@ public class HiveService {
 		Connection con = DriverManager.getConnection(connection, this.username, "");
 		this.stmt = con.createStatement();
 	}
+
 	/**
 	 * Hive Service Constructor with default port number=10000
+	 * 
 	 * @param host
 	 * @param dbname
 	 * @param username
@@ -60,21 +67,36 @@ public class HiveService {
 		Connection con = DriverManager.getConnection(connection, this.username, "");
 		this.stmt = con.createStatement();
 	}
+
 	/**
 	 * create table with given table name
+	 * 
 	 * @param tableName
 	 * @param dropIfExist
 	 * @throws SQLException
 	 */
-	public boolean createTable(String tableName, boolean dropIfExist) throws SQLException {
-		String sql = String.format("create table %s (key int, value string)", tableName);
+	public boolean createTable(String tableName, boolean dropIfExist, List<Column> columns) throws SQLException {
+		String columnString = "";
+		for (int i = 0; i < columns.size(); i++) {
+			Column c = columns.get(i);
+			if (i>0)
+				columnString += ",";
+			columnString+=c.getColumnName();
+			columnString += "  ";
+			columnString += c.getColumnType();
+		}
+		String sql = String.format("create table %s (%s)", tableName, columnString);
 		if (dropIfExist) {
+			System.out.println("drop table if exists " + tableName);
 			stmt.execute("drop table if exists " + tableName);
 		}
+		System.out.println(sql);
 		return this.stmt.execute(sql);
 	}
+
 	/**
 	 * show all the tables
+	 * 
 	 * @return
 	 * @throws SQLException
 	 */
@@ -82,8 +104,10 @@ public class HiveService {
 		String sql = "show tables";
 		return this.stmt.executeQuery(sql);
 	}
+
 	/**
 	 * describe the table with given table name
+	 * 
 	 * @param tableName
 	 * @return
 	 * @throws SQLException
@@ -93,4 +117,17 @@ public class HiveService {
 		return this.stmt.executeQuery(sql);
 	}
 
+	/**
+	 * load data
+	 * 
+	 * @param localPath
+	 * @param tableName
+	 * @throws SQLException
+	 */
+	public void loadLocalData(String localPath, String tableName) throws SQLException {
+		String sql = "load data local inpath '" + localPath + "' into table " + tableName;
+		System.out.println(sql);
+		this.stmt.execute(sql);
+	}
+	
 }
