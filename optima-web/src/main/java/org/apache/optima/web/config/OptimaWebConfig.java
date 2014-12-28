@@ -5,6 +5,7 @@ import org.apache.optima.web.component.PersonService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -64,5 +65,12 @@ public class OptimaWebConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public IPersonService personService() {
 		return new PersonService();
+	}
+	
+	@Bean 
+	public CommonsMultipartResolver multipartResolver(){
+		CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+		resolver.setMaxUploadSize(50000000);
+		return resolver;
 	}
 }
