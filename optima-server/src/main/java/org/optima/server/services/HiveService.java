@@ -116,6 +116,12 @@ public class HiveService {
 		String sql = String.format("describe %s", tableName);
 		return this.stmt.executeQuery(sql);
 	}
+	
+	public ResultSet getDataFromTable(String tableName) throws SQLException {
+		String sql = String.format("select * from  %s ", tableName);
+		System.out.println("============"+sql);
+		return this.stmt.executeQuery(sql);
+	}
 
 	/**
 	 * load data

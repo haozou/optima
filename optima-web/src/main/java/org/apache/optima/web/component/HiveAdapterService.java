@@ -4,9 +4,12 @@ import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.optima.web.util.JsonResultUtil;
 import org.optima.server.model.Column;
 import org.optima.server.services.HiveService;
 import org.springframework.stereotype.Service;
@@ -24,8 +27,8 @@ public class HiveAdapterService {
 	static BufferedReader reader;
 	static {
 		try {
-//			hService = new HiveService("localhost", 10000, "", "root");
-			hService = null;
+			hService = new HiveService("localhost", 10000, "", "root");
+//			hService = null;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -98,6 +101,26 @@ public class HiveAdapterService {
 		}
 		return result;
 	}
+	
+	public JsonObject getDataFromTable(String tableName) throws SQLException{
+		JsonObject result = JsonResultUtil.getDefaultSuccessJson();
+		JsonArray dataArray = new JsonArray();
+		result.add("list", dataArray);
+		ResultSet columnSet = hService.describleTable(tableName);
+		List<Column> columns = transferColumnResultSet2Array(columnSet);
+		int columnSize = columns.size();
+		ResultSet dataSet = hService.getDataFromTable(tableName);
+		while(dataSet.next()){
+			JsonObject jobject = new JsonObject();
+			for (int i = 0; i < columnSize; i++) {
+				Column c = columns.get(i);
+				String cValue = dataSet.getString(i+1);
+				jobject.addProperty(c.getColumnName(), cValue);
+			}
+			dataArray.add(jobject);
+		}
+		return result;
+	}
 
 	private List<Column> transferColumnString2Array(String columnString) {
 		List<Column> result = new ArrayList<Column>();
@@ -111,4 +134,14 @@ public class HiveAdapterService {
 		return result;
 	}
 
+	private List<Column> transferColumnResultSet2Array(ResultSet res) throws SQLException {
+		List<Column> result = new ArrayList<Column>();
+		while (res.next()) {
+			Column c = new Column();
+			c.setColumnName(res.getString(1));
+			c.setColumnType(res.getString(2));
+			result.add(c);
+		}
+		return result;
+	}
 }
