@@ -64,7 +64,34 @@ function loadFileAsText()
 }
 
 function doneService(){
-	window.history.back();
+	//window.history.back();
+	var myWindow = window.open("", "_self");
+	myWindow.document.write("<p>Testing1</p>");
+	
+	var text = '{"customer" : ['+
+	            '{"name":"Sharp","country":"China","email":"sharp@foryou-tech.com"},'+
+	            '{"name":"Saohao","country":"USA","email":"hao@foryou-tech.com"},'+
+	            '{"name":"Junjie","country":"USA","email":"junjie@foryou-tech.com"} ]}';
+	myWindow.document.write("<p>Testing2</p>");
+	var arr = JSON.parse(text);
+	myWindow.document.write("<p>Testing3</p>");
+	var out = "<table>";
+	myWindow.document.write("<p>Testing4</p>");
+    for(i = 0; i < arr.length; i++) {
+        out += "<tr><td>" +
+        arr.customer[i].name +
+        "</td><td>" +
+        arr.customer[i].country +
+        "</td><td>" +
+        arr.customer[i].email +
+        "</td></tr>";
+    }
+    myWindow.document.write("<p>Testing5</p>");
+    out += "</table>"
+    //document.getElementById("id_show").innerHTML = out;
+    for(i = 0; i < arr.length; i++) {
+    	myWindow.document.write("<div><table><tr><td>"+arr.customer[0].name+"</td></tr></table></div>");
+    }
 }
 
 </script>
