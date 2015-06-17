@@ -22,13 +22,41 @@
 	<modules>
 		<module>optima-web</module>
 		<module>optima-server</module>
+        <module>analyticshadoop</module>
+        <module>analyticspig</module>
+        <module>analyticshive</module>
 	</modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.6</java.version>
+        <hadoop.version>2.6.0</hadoop.version>
 		<optima.version>1.0.0-SNAPSHOT</optima.version>
 	</properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-yarn-client</artifactId>
+            <version>${hadoop.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-client</artifactId>
+            <version>${hadoop.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-common</artifactId>
+            <version>${hadoop.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-mapreduce-client-core</artifactId>
+            <version>${hadoop.version}</version>
+        </dependency>
+    </dependencies>
 
 	<build>
 		<pluginManagement>

@@ -1,15 +1,37 @@
+# mvn specific git ignore
 target/
+**/target/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
 pom.xml.next
 release.properties
-.settings
-.classpath
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+log/
+
+# eclipse specific git ignore
+*.pydevproject
 .project
-.DS_Store
-.log
-*.pyc
-.DS_Store
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
 *.swp
-.place-holder
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
+
+# Intellij
+.idea/
+*.iml
+*.iws
+
+# Mac
+.DS_Store
+
