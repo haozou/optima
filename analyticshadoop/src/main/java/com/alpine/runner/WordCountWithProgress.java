@@ -38,7 +38,7 @@ public class WordCountWithProgress extends Configured implements Tool {
 		// conf.set("mapred.jar",
 		// "/Users/zhaoyong/git/codeboyyong/hadoop-sample/wordcount_cli/target/wordcount_cli-1.0.jar");
 
-		Job job = new Job(conf);
+		Job job = Job.getInstance(conf);
 
 		job.setJarByClass(WordCountWithProgress.class);
 		// Providing the mapper and reducer class names
